@@ -1,0 +1,767 @@
+<style>
+:root{
+  --color-bg-base: #202020;
+  --color-bg-base-700: #202020;
+  --color-bg-base-100: color-mix(in srgb, var(--color-bg-base) 78%, white);
+  --color-bg-base-200: color-mix(in srgb, var(--color-bg-base) 82%, white);
+  --color-bg-base-300: color-mix(in srgb, var(--color-bg-base) 86%, white);
+  --color-bg-base-400: color-mix(in srgb, var(--color-bg-base) 90%, white);
+  --color-bg-base-500: color-mix(in srgb, var(--color-bg-base) 94%, white);
+  --color-bg-base-600: color-mix(in srgb, var(--color-bg-base) 98%, white);
+  --color-bg-base-700: color-mix(in srgb, var(--color-bg-base) 100%, black);
+  --color-bg-base-800: color-mix(in srgb, var(--color-bg-base) 90%, black);
+  --color-bg-base-900: color-mix(in srgb, var(--color-bg-base) 80%, black);
+  --color-bg-container: #202020;
+  --color-bg-container-700: #202020;
+  --color-bg-container-100: color-mix(in srgb, var(--color-bg-container) 78%, white);
+  --color-bg-container-200: color-mix(in srgb, var(--color-bg-container) 82%, white);
+  --color-bg-container-300: color-mix(in srgb, var(--color-bg-container) 86%, white);
+  --color-bg-container-400: color-mix(in srgb, var(--color-bg-container) 90%, white);
+  --color-bg-container-500: color-mix(in srgb, var(--color-bg-container) 94%, white);
+  --color-bg-container-600: color-mix(in srgb, var(--color-bg-container) 98%, white);
+  --color-bg-container-700: color-mix(in srgb, var(--color-bg-container) 100%, black);
+  --color-bg-container-800: color-mix(in srgb, var(--color-bg-container) 90%, black);
+  --color-bg-container-900: color-mix(in srgb, var(--color-bg-container) 80%, black);
+  --color-bg-elevated: #383838;
+  --color-bg-elevated-700: #383838;
+  --color-bg-elevated-100: color-mix(in srgb, var(--color-bg-elevated) 78%, white);
+  --color-bg-elevated-200: color-mix(in srgb, var(--color-bg-elevated) 82%, white);
+  --color-bg-elevated-300: color-mix(in srgb, var(--color-bg-elevated) 86%, white);
+  --color-bg-elevated-400: color-mix(in srgb, var(--color-bg-elevated) 90%, white);
+  --color-bg-elevated-500: color-mix(in srgb, var(--color-bg-elevated) 94%, white);
+  --color-bg-elevated-600: color-mix(in srgb, var(--color-bg-elevated) 98%, white);
+  --color-bg-elevated-700: color-mix(in srgb, var(--color-bg-elevated) 100%, black);
+  --color-bg-elevated-800: color-mix(in srgb, var(--color-bg-elevated) 90%, black);
+  --color-bg-elevated-900: color-mix(in srgb, var(--color-bg-elevated) 80%, black);
+  --color-primary: #5073b8ff;
+  --color-primary-700: #5073b8ff;
+  --color-primary-100: color-mix(in srgb, var(--color-primary) 78%, white);
+  --color-primary-200: color-mix(in srgb, var(--color-primary) 82%, white);
+  --color-primary-300: color-mix(in srgb, var(--color-primary) 86%, white);
+  --color-primary-400: color-mix(in srgb, var(--color-primary) 90%, white);
+  --color-primary-500: color-mix(in srgb, var(--color-primary) 94%, white);
+  --color-primary-600: color-mix(in srgb, var(--color-primary) 98%, white);
+  --color-primary-700: color-mix(in srgb, var(--color-primary) 100%, black);
+  --color-primary-800: color-mix(in srgb, var(--color-primary) 90%, black);
+  --color-primary-900: color-mix(in srgb, var(--color-primary) 80%, black);
+  --color-primary-bg: #0a406dff;
+  --color-primary-bg-700: #0a406dff;
+  --color-primary-bg-100: color-mix(in srgb, var(--color-primary-bg) 78%, white);
+  --color-primary-bg-200: color-mix(in srgb, var(--color-primary-bg) 82%, white);
+  --color-primary-bg-300: color-mix(in srgb, var(--color-primary-bg) 86%, white);
+  --color-primary-bg-400: color-mix(in srgb, var(--color-primary-bg) 90%, white);
+  --color-primary-bg-500: color-mix(in srgb, var(--color-primary-bg) 94%, white);
+  --color-primary-bg-600: color-mix(in srgb, var(--color-primary-bg) 98%, white);
+  --color-primary-bg-700: color-mix(in srgb, var(--color-primary-bg) 100%, black);
+  --color-primary-bg-800: color-mix(in srgb, var(--color-primary-bg) 90%, black);
+  --color-primary-bg-900: color-mix(in srgb, var(--color-primary-bg) 80%, black);
+  --color-primary-border: #0a4070;
+  --color-primary-border-700: #0a4070;
+  --color-primary-border-100: color-mix(in srgb, var(--color-primary-border) 78%, white);
+  --color-primary-border-200: color-mix(in srgb, var(--color-primary-border) 82%, white);
+  --color-primary-border-300: color-mix(in srgb, var(--color-primary-border) 86%, white);
+  --color-primary-border-400: color-mix(in srgb, var(--color-primary-border) 90%, white);
+  --color-primary-border-500: color-mix(in srgb, var(--color-primary-border) 94%, white);
+  --color-primary-border-600: color-mix(in srgb, var(--color-primary-border) 98%, white);
+  --color-primary-border-700: color-mix(in srgb, var(--color-primary-border) 100%, black);
+  --color-primary-border-800: color-mix(in srgb, var(--color-primary-border) 90%, black);
+  --color-primary-border-900: color-mix(in srgb, var(--color-primary-border) 80%, black);
+  --color-primary-hover: #0a4070;
+  --color-primary-hover-700: #0a4070;
+  --color-primary-hover-100: color-mix(in srgb, var(--color-primary-hover) 78%, white);
+  --color-primary-hover-200: color-mix(in srgb, var(--color-primary-hover) 82%, white);
+  --color-primary-hover-300: color-mix(in srgb, var(--color-primary-hover) 86%, white);
+  --color-primary-hover-400: color-mix(in srgb, var(--color-primary-hover) 90%, white);
+  --color-primary-hover-500: color-mix(in srgb, var(--color-primary-hover) 94%, white);
+  --color-primary-hover-600: color-mix(in srgb, var(--color-primary-hover) 98%, white);
+  --color-primary-hover-700: color-mix(in srgb, var(--color-primary-hover) 100%, black);
+  --color-primary-hover-800: color-mix(in srgb, var(--color-primary-hover) 90%, black);
+  --color-primary-hover-900: color-mix(in srgb, var(--color-primary-hover) 80%, black);
+  --color-primary-active: #02111f;
+  --color-primary-active-700: #02111f;
+  --color-primary-active-100: color-mix(in srgb, var(--color-primary-active) 78%, white);
+  --color-primary-active-200: color-mix(in srgb, var(--color-primary-active) 82%, white);
+  --color-primary-active-300: color-mix(in srgb, var(--color-primary-active) 86%, white);
+  --color-primary-active-400: color-mix(in srgb, var(--color-primary-active) 90%, white);
+  --color-primary-active-500: color-mix(in srgb, var(--color-primary-active) 94%, white);
+  --color-primary-active-600: color-mix(in srgb, var(--color-primary-active) 98%, white);
+  --color-primary-active-700: color-mix(in srgb, var(--color-primary-active) 100%, black);
+  --color-primary-active-800: color-mix(in srgb, var(--color-primary-active) 90%, black);
+  --color-primary-active-900: color-mix(in srgb, var(--color-primary-active) 80%, black);
+  --color-link: #0ea5e9;
+  --color-link-700: #0ea5e9;
+  --color-link-100: color-mix(in srgb, var(--color-link) 78%, white);
+  --color-link-200: color-mix(in srgb, var(--color-link) 82%, white);
+  --color-link-300: color-mix(in srgb, var(--color-link) 86%, white);
+  --color-link-400: color-mix(in srgb, var(--color-link) 90%, white);
+  --color-link-500: color-mix(in srgb, var(--color-link) 94%, white);
+  --color-link-600: color-mix(in srgb, var(--color-link) 98%, white);
+  --color-link-700: color-mix(in srgb, var(--color-link) 100%, black);
+  --color-link-800: color-mix(in srgb, var(--color-link) 90%, black);
+  --color-link-900: color-mix(in srgb, var(--color-link) 80%, black);
+  --color-link-hover: #38bdf8;
+  --color-link-hover-700: #38bdf8;
+  --color-link-hover-100: color-mix(in srgb, var(--color-link-hover) 78%, white);
+  --color-link-hover-200: color-mix(in srgb, var(--color-link-hover) 82%, white);
+  --color-link-hover-300: color-mix(in srgb, var(--color-link-hover) 86%, white);
+  --color-link-hover-400: color-mix(in srgb, var(--color-link-hover) 90%, white);
+  --color-link-hover-500: color-mix(in srgb, var(--color-link-hover) 94%, white);
+  --color-link-hover-600: color-mix(in srgb, var(--color-link-hover) 98%, white);
+  --color-link-hover-700: color-mix(in srgb, var(--color-link-hover) 100%, black);
+  --color-link-hover-800: color-mix(in srgb, var(--color-link-hover) 90%, black);
+  --color-link-hover-900: color-mix(in srgb, var(--color-link-hover) 80%, black);
+  --color-link-active: #7dd3fc;
+  --color-link-active-700: #7dd3fc;
+  --color-link-active-100: color-mix(in srgb, var(--color-link-active) 78%, white);
+  --color-link-active-200: color-mix(in srgb, var(--color-link-active) 82%, white);
+  --color-link-active-300: color-mix(in srgb, var(--color-link-active) 86%, white);
+  --color-link-active-400: color-mix(in srgb, var(--color-link-active) 90%, white);
+  --color-link-active-500: color-mix(in srgb, var(--color-link-active) 94%, white);
+  --color-link-active-600: color-mix(in srgb, var(--color-link-active) 98%, white);
+  --color-link-active-700: color-mix(in srgb, var(--color-link-active) 100%, black);
+  --color-link-active-800: color-mix(in srgb, var(--color-link-active) 90%, black);
+  --color-link-active-900: color-mix(in srgb, var(--color-link-active) 80%, black);
+  --color-text-base: #e5e5e5;
+  --color-text-base-700: #e5e5e5;
+  --color-text-base-100: color-mix(in srgb, var(--color-text-base) 78%, white);
+  --color-text-base-200: color-mix(in srgb, var(--color-text-base) 82%, white);
+  --color-text-base-300: color-mix(in srgb, var(--color-text-base) 86%, white);
+  --color-text-base-400: color-mix(in srgb, var(--color-text-base) 90%, white);
+  --color-text-base-500: color-mix(in srgb, var(--color-text-base) 94%, white);
+  --color-text-base-600: color-mix(in srgb, var(--color-text-base) 98%, white);
+  --color-text-base-700: color-mix(in srgb, var(--color-text-base) 100%, black);
+  --color-text-base-800: color-mix(in srgb, var(--color-text-base) 90%, black);
+  --color-text-base-900: color-mix(in srgb, var(--color-text-base) 80%, black);
+  --color-text-secondary: #a3a3a3;
+  --color-text-secondary-700: #a3a3a3;
+  --color-text-secondary-100: color-mix(in srgb, var(--color-text-secondary) 78%, white);
+  --color-text-secondary-200: color-mix(in srgb, var(--color-text-secondary) 82%, white);
+  --color-text-secondary-300: color-mix(in srgb, var(--color-text-secondary) 86%, white);
+  --color-text-secondary-400: color-mix(in srgb, var(--color-text-secondary) 90%, white);
+  --color-text-secondary-500: color-mix(in srgb, var(--color-text-secondary) 94%, white);
+  --color-text-secondary-600: color-mix(in srgb, var(--color-text-secondary) 98%, white);
+  --color-text-secondary-700: color-mix(in srgb, var(--color-text-secondary) 100%, black);
+  --color-text-secondary-800: color-mix(in srgb, var(--color-text-secondary) 90%, black);
+  --color-text-secondary-900: color-mix(in srgb, var(--color-text-secondary) 80%, black);
+  --color-text-quaternary: #737373;
+  --color-text-quaternary-700: #737373;
+  --color-text-quaternary-100: color-mix(in srgb, var(--color-text-quaternary) 78%, white);
+  --color-text-quaternary-200: color-mix(in srgb, var(--color-text-quaternary) 82%, white);
+  --color-text-quaternary-300: color-mix(in srgb, var(--color-text-quaternary) 86%, white);
+  --color-text-quaternary-400: color-mix(in srgb, var(--color-text-quaternary) 90%, white);
+  --color-text-quaternary-500: color-mix(in srgb, var(--color-text-quaternary) 94%, white);
+  --color-text-quaternary-600: color-mix(in srgb, var(--color-text-quaternary) 98%, white);
+  --color-text-quaternary-700: color-mix(in srgb, var(--color-text-quaternary) 100%, black);
+  --color-text-quaternary-800: color-mix(in srgb, var(--color-text-quaternary) 90%, black);
+  --color-text-quaternary-900: color-mix(in srgb, var(--color-text-quaternary) 80%, black);
+  --color-border: #2e2d2dff;
+  --color-border-700: #2e2d2dff;
+  --color-border-100: color-mix(in srgb, var(--color-border) 78%, white);
+  --color-border-200: color-mix(in srgb, var(--color-border) 82%, white);
+  --color-border-300: color-mix(in srgb, var(--color-border) 86%, white);
+  --color-border-400: color-mix(in srgb, var(--color-border) 90%, white);
+  --color-border-500: color-mix(in srgb, var(--color-border) 94%, white);
+  --color-border-600: color-mix(in srgb, var(--color-border) 98%, white);
+  --color-border-700: color-mix(in srgb, var(--color-border) 100%, black);
+  --color-border-800: color-mix(in srgb, var(--color-border) 90%, black);
+  --color-border-900: color-mix(in srgb, var(--color-border) 80%, black);
+  --color-border-secondary: #404040;
+  --color-border-secondary-700: #404040;
+  --color-border-secondary-100: color-mix(in srgb, var(--color-border-secondary) 78%, white);
+  --color-border-secondary-200: color-mix(in srgb, var(--color-border-secondary) 82%, white);
+  --color-border-secondary-300: color-mix(in srgb, var(--color-border-secondary) 86%, white);
+  --color-border-secondary-400: color-mix(in srgb, var(--color-border-secondary) 90%, white);
+  --color-border-secondary-500: color-mix(in srgb, var(--color-border-secondary) 94%, white);
+  --color-border-secondary-600: color-mix(in srgb, var(--color-border-secondary) 98%, white);
+  --color-border-secondary-700: color-mix(in srgb, var(--color-border-secondary) 100%, black);
+  --color-border-secondary-800: color-mix(in srgb, var(--color-border-secondary) 90%, black);
+  --color-border-secondary-900: color-mix(in srgb, var(--color-border-secondary) 80%, black);
+  --color-success: #22c55e;
+  --color-success-700: #22c55e;
+  --color-success-100: color-mix(in srgb, var(--color-success) 78%, white);
+  --color-success-200: color-mix(in srgb, var(--color-success) 82%, white);
+  --color-success-300: color-mix(in srgb, var(--color-success) 86%, white);
+  --color-success-400: color-mix(in srgb, var(--color-success) 90%, white);
+  --color-success-500: color-mix(in srgb, var(--color-success) 94%, white);
+  --color-success-600: color-mix(in srgb, var(--color-success) 98%, white);
+  --color-success-700: color-mix(in srgb, var(--color-success) 100%, black);
+  --color-success-800: color-mix(in srgb, var(--color-success) 90%, black);
+  --color-success-900: color-mix(in srgb, var(--color-success) 80%, black);
+  --color-warning: #eab308;
+  --color-warning-700: #eab308;
+  --color-warning-100: color-mix(in srgb, var(--color-warning) 78%, white);
+  --color-warning-200: color-mix(in srgb, var(--color-warning) 82%, white);
+  --color-warning-300: color-mix(in srgb, var(--color-warning) 86%, white);
+  --color-warning-400: color-mix(in srgb, var(--color-warning) 90%, white);
+  --color-warning-500: color-mix(in srgb, var(--color-warning) 94%, white);
+  --color-warning-600: color-mix(in srgb, var(--color-warning) 98%, white);
+  --color-warning-700: color-mix(in srgb, var(--color-warning) 100%, black);
+  --color-warning-800: color-mix(in srgb, var(--color-warning) 90%, black);
+  --color-warning-900: color-mix(in srgb, var(--color-warning) 80%, black);
+  --color-error: #ef4444;
+  --color-error-700: #ef4444;
+  --color-error-100: color-mix(in srgb, var(--color-error) 78%, white);
+  --color-error-200: color-mix(in srgb, var(--color-error) 82%, white);
+  --color-error-300: color-mix(in srgb, var(--color-error) 86%, white);
+  --color-error-400: color-mix(in srgb, var(--color-error) 90%, white);
+  --color-error-500: color-mix(in srgb, var(--color-error) 94%, white);
+  --color-error-600: color-mix(in srgb, var(--color-error) 98%, white);
+  --color-error-700: color-mix(in srgb, var(--color-error) 100%, black);
+  --color-error-800: color-mix(in srgb, var(--color-error) 90%, black);
+  --color-error-900: color-mix(in srgb, var(--color-error) 80%, black);
+}
+</style>
+
+<html><body style="color:white;background-color:#202020">
+<div style="margin-top:60px"><h3>color-bg-base</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-bg-base-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-base-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-base-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-bg-container</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-bg-container-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-container-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-container-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-bg-elevated</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-bg-elevated-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-bg-elevated-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-primary</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-primary-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-primary-bg</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-bg-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-bg-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-primary-border</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-primary-border-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-border-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-border-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-primary-hover</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-hover-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-hover-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-primary-active</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-primary-active-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-primary-active-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-primary-active-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-link</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-link-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-link-hover</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-link-hover-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-hover-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-hover-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-link-active</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-link-active-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-link-active-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-link-active-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-text-base</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-text-base-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-base-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-base-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-text-secondary</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-secondary-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-secondary-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-text-quaternary</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-text-quaternary-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-text-quaternary-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-border</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-border-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-border-secondary</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-border-secondary-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-border-secondary-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-success</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-success-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-success-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-success-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-warning</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-warning-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-warning-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-warning-900</span>
+    </div>
+</div>
+<div style="margin-top:60px"><h3>color-error</h3>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-100)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-100</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-200)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-200</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-300)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-300</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-400)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-400</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-500)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-500</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-600)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-600</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-700)"> 
+    <span style="border-top:1px solid white;display:inline-block; width:100%;background-color: #202020;">--color-error-700</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-800)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-800</span>
+    </div>
+<div style="display: inline-block; height:60px; width:200px;margin-right:15px;background-color: var(--color-error-900)"> 
+    <span style="display:inline-block; width:100%;background-color: #202020;">--color-error-900</span>
+    </div>
+</div>
+</body>

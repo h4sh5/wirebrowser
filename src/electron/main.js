@@ -1,0 +1,102 @@
+import { app, BrowserWindow, ipcMain, dialog, nativeImage } from "electron";
+import path from "path";
+import { fileURLToPath } from "url";
+import { main, quit } from "#src/app/main.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+let win;
+let isQuitting = false;
+function createWindow() {
+  app.dock.setIcon(
+    nativeImage.createFromPath(path.join(__dirname, 'icon.png'))
+  );
+  
+  win = new BrowserWindow({
+    width: 2000,
+    height: 800,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      // backgroundThrottling: false
+    },
+  });
+
+  if (process.env.ELECTRON_DEV) {
+    win.loadURL("http://localhost:5173");
+    win.webContents.openDevTools();
+  } else {
+    win.loadFile(path.join(__dirname, '../../dist/index.html'));
+  }
+  main(win)
+}
+
+app.whenReady().then(createWindow);
+// app.disableHardwareAcceleration();
+
+ipcMain.handle('select-file', async () => {
+  const { canceled, filePaths } = await dialog.showOpenDialog(win, {
+    title: 'Select file',
+    properties: ['openFile', 'createDirectory'],
+  });
+  if (canceled) return null;
+  return filePaths[0];
+});
+
+ipcMain.handle('select-dir', async () => {
+  const { canceled, filePaths } = await dialog.showOpenDialog(win, {
+    title: 'Select folder',
+    properties: ['openDirectory', 'createDirectory'],
+  });
+  if (canceled) return null;
+  return filePaths[0];
+});
+
+ipcMain.handle('create-file', async () => {
+  const { canceled, filePath } = await dialog.showSaveDialog(win, {
+    title: 'New file',
+    defaultPath: '',
+  });
+  if (canceled) return null;
+  return filePath;
+});
+
+app.on('window-all-closed', () => {
+  //if (process.platform !== 'darwin')
+  app.quit();
+});
+
+app.on("before-quit", async (event) => {
+  if (!isQuitting) {
+    event.preventDefault();
+    try {
+      await quit();
+    } finally {
+      isQuitting = true;
+      app.quit();
+    }
+  }
+});
+
+app.on("will-quit", () => {
+
+});
+
+process.on("SIGINT", () => {
+  app.quit();
+});
+
+process.on("SIGTERM", () => {
+  app.quit();
+});
+
+if (process.platform === "win32") {
+  const rl = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  rl.on("SIGINT", () => {
+    app.quit();
+  });
+}

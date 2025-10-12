@@ -1,0 +1,64 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+* {
+  user-select: none !important;
+  cursor: default !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+input[type="number"],
+textarea,
+[contenteditable="true"] {
+  cursor: text !important;
+}
+
+a {
+  cursor: pointer !important;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+.ag-row-focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ag-cell-focus,
+.ag-cell:focus,
+.ag-cell.ag-cell-focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: rgba(0,0,0,0) !important;
+}
+
+.ant-tree-switcher {
+  display: none;
+}
+
+.ant-tabs-content, .ant-tabs-tabpane {
+  height: 100% !important;
+}
+
+.ant-tree-drop-indicator {
+  background-color: #868181 !important;
+  border-radius: 8px !important;
+  height: 30px !important;
+  opacity:.5;
+}
+.ant-tree-drop-indicator::after {
+  opacity: 0 !important;
+}
+
+@import "tailwindcss";
+@import "./themes/dark/tailwind.css";

@@ -1,0 +1,14 @@
+{
+  "name": "Wirebrowser",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "tabs",
+    "tabGroups",
+    "scripting",
+    "debugger"
+  ],
+  "background": {
+    "service_worker": "wirebrowser_background.js"
+  }
+}
