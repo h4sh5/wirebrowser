@@ -5,6 +5,7 @@ Its mission is to merge the power of **Burp Suite**, **Postman**, and **Chrome D
 
 It provides a unified interface to inspect, intercept, automate, and test browser and API behaviors,making it an all-in-one companion for developers, testers, and researchers.
 
+
 ---
 
 ## 🧭 Overview
@@ -17,9 +18,19 @@ Wirebrowser is divided into **5 main sections**, each containing specialized too
 4. **API Collection** – create and run API requests with variable support, like Postman.  
 5. **Tools** – utility tools such as encoders/decoders and JWT creator/verifier.
 
+
+### 🌐 Interceptor
+![Wirebrowser Screenshot Interceptor](./docs/screenshots/wirebrowser-interceptor.png)
+
+### 🧠 Heap Snapshot Search
+![Wirebrowser Screenshot Memory](./docs/screenshots/wirebrowser-memory.png)
+
+### ▶️ API Collection
+![Wirebrowser Screenshot API Collection](./docs/screenshots/wirebrowser-api-collection.png)
+
+
 ---
 
-screenshow here
 
 ## Getting Started
 ### Install
@@ -136,7 +147,7 @@ Every tab/page opened by Wirebrowser has a unique integer `tabId`. Use this `tab
 While tools like Chrome DevTools, Burp Suite, and Postman are powerful, they are isolated and often lack automation and flexibility.  
 **Wirebrowser unifies these workflows** with advanced capabilities:
 
-- ✅ **Rewrite requests and responses** dynamically (DevTools cannot modify responses).  
+- ✅ **Rewrite requests and responses** dynamically.  
 - ✅ **Search in memory** for objects or values using regex.  
 - ✅ **Integrate scripting and automation** natively.  
 - ✅ **API testing built-in**, no need for external tools.  
