@@ -1,6 +1,8 @@
 import { textMatches, replaceVars, bashEscape, parseCurlCommand } from "#src/common/utils.js";
 
 export class NetworkMessage {
+  bodySparator = "◖─────────────────────────────────────────────────────────────◗";
+
   _parse({ r, id, reqId, pageId, type }, parseFirstLine) {
     let firstLine, headers;
     this.id = id;
@@ -9,50 +11,55 @@ export class NetworkMessage {
     this.type = type;
     try {
       const o = JSON.parse(r);
-      firstLine = o[0].shift();
-      headers = o[0];
-      this.data = typeof o[1] == 'object' ? JSON.stringify(o[1]) : o[1];
+      firstLine = o[0];
+      headers = o[1];
+      const body = o.length > 2 ? o[o.length - 1] : undefined;
+      this.data = typeof body === 'object' ? JSON.stringify(body) : body;
+      if (o.length === 3 && this.data === this.bodySparator) {
+        this.data = null;
+      }
     } catch (e) {
       const [h, d] = r.split("\n\n");
       headers = h.split("\n");
       firstLine = headers.shift();
       this.data = d;
     }
-    this.headers = {};
-    for (const header of headers) {
-      const [k, v] = header.split(/:(.+)/);
-      this.headers[k.trim()] = v.trim();
+    if (Array.isArray(headers)) {
+      this.headers = {};
+      for (const header of headers) {
+        const [k, v] = header.split(/:(.+)/);
+        this.headers[k.trim()] = v.trim();
+      }
+    } else {
+      this.headers = headers;
     }
     parseFirstLine(firstLine);
   }
 
   _serialize(format, firstLine) {
     let out;
-    const headers = Object.keys(this.headers).map(k => `${k}: ${this.headers[k]}`)
     switch (format) {
       case "text":
         out = [
           firstLine,
-          ...headers,
+          ...Object.keys(this.headers).map(k => `${k}: ${this.headers[k]}`),
           ...(this.data ? ["", this.data] : [])
         ];
         return out.join("\n");  // @TODO shall we use \r\n ?
       case "json":
-        let d = "";
+        out = [
+          firstLine,
+          this.headers,
+        ];
         if (this.data) {
+          let d;
           try {
             d = JSON.parse(this.data);
           } catch (e) {
             d = this.data;
           }
+          out.push(this.bodySparator, d);
         }
-        out = [
-          [
-            firstLine,
-            ...headers,
-          ],
-          ...(d ? [d] : [])
-        ]
         return JSON.stringify(out, null, 2);
     }
   }
@@ -99,6 +106,9 @@ export class Request extends NetworkMessage {
       this.response = req.response || null;
     } else {
       this._parse({ r: req, id, pageId, type }, (firstLine) => {
+        if (typeof firstLine !== 'string') {
+          firstLine = this._parseFirstLineArray(firstLine);
+        }
         const tokens = firstLine.split(" ").filter(t => t !== "");
         if (tokens.length < 3) {
           throw new Error("Error parsing request's first line");
@@ -117,6 +127,26 @@ export class Request extends NetworkMessage {
     }
   }
 
+  _parseFirstLineArray(arr) {
+    let i = 1;
+    let auth = "";
+    let hash = "";
+    let pars = "";
+    if (typeof arr[i] === 'object') {
+      auth = `${arr[i].username}:${arr[i].password}@`;
+      i++;
+    }
+    const purl = new URL(arr[i++]);
+    const fullUrl = `${purl.protocol}//${auth}${purl.host}${arr[i++]}`;
+    if (arr[i].length > 0) {
+      pars = `?${arr[i].join("&")}`
+    }
+    if (arr.length - 1 > ++i) {
+      hash = arr[i];
+    }
+    return `${arr[0]} ${fullUrl}${pars}${hash} ${arr[arr.length - 1]}`;
+  }
+
   serialize(format) {
     if (format === "curl") {
       const cmd = ["curl"];
@@ -132,7 +162,27 @@ export class Request extends NetworkMessage {
       cmd.push(this.url);
       return bashEscape(cmd);
     }
-    return this._serialize(format, `${this.method} ${this.url} ${this.httpVersion}`);
+    let firstLine = `${this.method} ${this.url} ${this.httpVersion}`;
+    if (format === "json+") {
+      const purl = new URL(this.url);
+      const params = [];
+      for (const [key, value] of purl.searchParams.entries()) {
+        params.push(`${key}=${value}`);
+      }
+      firstLine = [
+        this.method,
+        ...(purl.username || purl.password ? [
+          { username: purl.username || "", password: purl.password || "" }
+        ] : []),
+        purl.origin,
+        purl.pathname,
+        params,
+        ...(purl.hash ? [purl.hash] : []),
+        this.httpVersion
+      ];
+      return this._serialize("json", firstLine);
+    }
+    return this._serialize(format, firstLine);
   }
 
   compare(request) {
