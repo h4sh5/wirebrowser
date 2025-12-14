@@ -13,7 +13,9 @@
         "build": "vite build",
         "lint": "eslint \"src/**/*.{js,jsx}\"",
         "lint-quiet": "eslint \"src/**/*.{js,jsx}\" --quiet",
-        "wirebrowser": "electron ./src/electron/main.js"
+        "wirebrowser": "electron ./src/electron/main.js",
+        "app:dir": "electron-builder --dir",
+        "app:dist": "electron-builder"
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^4.0.0",
@@ -37,6 +39,7 @@
         "antd": "^5.27.1",
         "buffer": "^6.0.3",
         "electron": "^30.0.0",
+        "electron-builder": "^26.0.12",
         "got": "^14.4.8",
         "lowdb": "^7.0.1",
         "puppeteer": "^24.17.1",
