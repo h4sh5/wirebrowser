@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   base: './',
+  build: {
+    outDir: 'dist',
+  },
   plugins: [react(), tailwindcss()],
   css: {
     preprocessorOptions: {

@@ -26,7 +26,7 @@ let loadedModules = [];
 
 
 const newBrowser = async (settingsManager) => {
-  const extpath = path.join(`${getCurrentDir(import.meta.url)}`, "..", "chrome-extension");
+  const extpath = path.join(`${getCurrentDir(import.meta.url)}`, "..", "..", "..", "chrome-extension");
   const chromeArgs = [
     '--disable-features=OutOfBlinkCors,IsolateOrigins,SitePerProcess',
     '--no-sandbox',

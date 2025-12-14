@@ -1,7 +1,7 @@
 {
     "name": "wirebrowser",
     "version": "0.1.0",
-    "main": "electron/main.js",
+    "main": "src/electron/main.js",
     "type": "module",
     "imports": {
         "#src/*": "./src/*"
@@ -29,7 +29,9 @@
         "less": "^4.4.1",
         "less-loader": "^12.3.0",
         "tailwindcss": "^4.1.12",
-        "vite": "^5.0.0"
+        "vite": "^5.0.0",
+        "electron": "^30.0.0",
+        "electron-builder": "^26.0.12"
     },
     "dependencies": {
         "@ant-design/v5-patch-for-react-19": "^1.0.3",
@@ -38,8 +40,6 @@
         "ag-grid-react": "^34.1.2",
         "antd": "^5.27.1",
         "buffer": "^6.0.3",
-        "electron": "^30.0.0",
-        "electron-builder": "^26.0.12",
         "got": "^14.4.8",
         "lowdb": "^7.0.1",
         "puppeteer": "^24.17.1",
@@ -47,5 +47,23 @@
         "react-dom": "^19.1.1",
         "react-resizable-panels": "^3.0.5",
         "shell-quote": "^1.8.3"
-    }
+    },
+
+    "build": {
+        "extraResources": [
+            {
+                "from": "dist/index.html",
+                "to": "dist/index.html"
+            },
+            {
+                "from": "dist/assets",
+                "to": "dist/assets"
+            },
+            {
+                "from": "src/chrome-extension",
+                "to": "chrome-extension"
+            }
+        ]
+}
+
 }

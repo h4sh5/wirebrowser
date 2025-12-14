@@ -31,7 +31,8 @@ function createWindow() {
     win.loadURL("http://localhost:5173");
     win.webContents.openDevTools();
   } else {
-    win.loadFile(path.join(__dirname, '../../dist/index.html'));
+    // XXX may be different when inside a packaged environment like a dmg file
+    win.loadFile(path.join(__dirname, '../../../dist/index.html'));
     Menu.setApplicationMenu(null);
   }
   main(win)
