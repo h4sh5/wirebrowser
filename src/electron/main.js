@@ -31,8 +31,20 @@ function createWindow() {
     win.loadURL("http://localhost:5173");
     win.webContents.openDevTools();
   } else {
-    // XXX may be different when inside a packaged environment like a dmg file
-    win.loadFile(path.join(__dirname, '../../../dist/index.html'));
+    // paths are different when inside a packaged environment like a dmg file
+    let isPackaged = false;
+    // console.log(`__dirname: ${__dirname}`)
+    if (__dirname && __dirname.indexOf('app.asar') !== -1) {
+      isPackaged = true;
+    } else if (process.argv.filter(a => a.indexOf('app.asar') !== -1).length > 0) {
+      isPackaged = true;
+    }
+    if (isPackaged) {
+      win.loadFile(path.join(__dirname, '..','..','..','dist','index.html'));
+    } else {
+      win.loadFile(path.join(__dirname, '..','..','dist','index.html'));
+    }
+    
     Menu.setApplicationMenu(null);
   }
   main(win)

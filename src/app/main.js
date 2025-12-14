@@ -23,10 +23,23 @@ const idManager = new IdManager();
 let uiEvents;
 let cdpWsEndpoint;
 let loadedModules = [];
-
+const __dirname = getCurrentDir(import.meta.url);
 
 const newBrowser = async (settingsManager) => {
-  const extpath = path.join(`${getCurrentDir(import.meta.url)}`, "..", "..", "..", "chrome-extension");
+  // paths are different when inside a packaged environment like a dmg file
+  let isPackaged = false;
+
+  if (__dirname.indexOf('app.asar') !== -1) {
+    isPackaged = true;
+  } else if (process.argv.filter(a => a.indexOf('app.asar') !== -1).length > 0) {
+    isPackaged = true;
+  }
+  let extpath = path.join(`${getCurrentDir(import.meta.url)}`, "..", "chrome-extension");
+  if (isPackaged) {
+    extpath = path.join(`${getCurrentDir(import.meta.url)}`, "..", "..", "..", "chrome-extension");
+  }
+
+ 
   const chromeArgs = [
     '--disable-features=OutOfBlinkCors,IsolateOrigins,SitePerProcess',
     '--no-sandbox',

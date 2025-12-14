@@ -8,7 +8,9 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        # do not cancel all if one fails
+        fail-fast: false
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
       - name: Check out Git repository
