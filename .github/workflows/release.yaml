@@ -7,9 +7,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      # do not cancel all if one fails
+      fail-fast: false
       matrix:
-        # do not cancel all if one fails
-        fail-fast: false
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
