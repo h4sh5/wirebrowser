@@ -23,6 +23,11 @@ jobs:
 
       - run: npm run build
 
+
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v3
+        if: startsWith(matrix.os, 'ubuntu')
+        
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1.6.0
         with:
