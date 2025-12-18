@@ -36,17 +36,21 @@ if (process.env.APPIMAGE != undefined) {
   isPackaged = true;
 }
 
-function findFilesRecursive(directory, fileName, fileList = []) {
+function findFilesRecursive(directory, fileName, fileList = [], includeDirs = false) {
   const files = fs.readdirSync(directory);
 
   for (const file of files) {
     const filePath = path.join(directory, file);
     const stat = fs.statSync(filePath);
-
+    if (file === fileName) {
+      if (stat.isDirectory() && includeDirs === true) {
+        fileList.push(filePath);
+      } else if (!stat.isDirectory()) {
+        fileList.push(filePath);
+      }
+    }
     if (stat.isDirectory()) {
-      findFilesRecursive(filePath, fileName, fileList);
-    } else if (file === fileName) {
-      fileList.push(filePath);
+      findFilesRecursive(filePath, fileName, fileList, includeDirs);
     }
   }
 
@@ -78,6 +82,17 @@ const newBrowser = async (settingsManager) => {
   if (isPackaged) {
     extpath = path.join(`${getCurrentDir(import.meta.url)}`, "..", "..", "..", "chrome-extension");
   }
+
+  if (!fs.existsSync(path.join(extpath, 'manifest.json'))) {
+    console.log(`WARNING: Extension path is bad, finding a new one...`);
+    let extpathsFound = findFilesRecursive(path.join(`${getCurrentDir(import.meta.url)}`, ".."), "chrome-extension", [], true);
+    console.log(`Found extension paths: ${extpathsFound}`);
+    if (extpathsFound.length > 0) {
+      extpath = extpathsFound[extpathsFound.length - 1]; // get last element
+    }
+  }
+
+  console.log(`Using extension path: ${extpath}`);
 
   const chromeArgs = [
     '--disable-features=OutOfBlinkCors,IsolateOrigins,SitePerProcess',
@@ -122,15 +137,20 @@ const newBrowser = async (settingsManager) => {
 
       for (var i = bundledBrowserPaths.length - 1; i >= 0; i--) {
         // enumerate through found browser paths until one works
-        browser = await puppeteer.launch({
-          executablePath: bundledBrowserPaths[i],
-          headless: false,
-          defaultViewport: null,
-          ignoreHTTPSErrors: true,
-          userDataDir: settingsManager.settings?.global?.browser?.dataDir || undefined,
-          args: chromeArgs
-        });
-        break;
+        try {
+          browser = await puppeteer.launch({
+            executablePath: bundledBrowserPaths[i],
+            headless: false,
+            defaultViewport: null,
+            ignoreHTTPSErrors: true,
+            userDataDir: settingsManager.settings?.global?.browser?.dataDir || undefined,
+            args: chromeArgs
+          });
+          break;
+        } catch (e) {
+          console.log(`Exception launching browser binary at ${bundledBrowserPaths[i]}, trying next entry found... (${e})`);
+        }
+        
       }
         
     } else {
